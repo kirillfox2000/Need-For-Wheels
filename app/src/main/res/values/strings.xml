@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Need_For_Wheels</string>
+    <string name="label_tires">Шины</string>
+    <string name="hint_search">Поиск</string>
+    <string name="label_manufacturers">Производители</string>
+    <string name="label_questions">Вопросы</string>
+    <string name="label_responsiveness">Задайте интересующий вопрос специалисту</string>
+    <string name="hint_responsiveness">Напишите вопрос</string>
+    <string name="text_responsiveness">Отправить</string>
+
+</resources>

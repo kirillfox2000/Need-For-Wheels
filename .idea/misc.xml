@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/drawable/ic__85651_search_icon.xml" value="0.2546875" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/drawable/tire_ac_background.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_log_in.xml" value="0.264" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_manufacturer.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_manufacturers.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_questions.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_register.xml" value="0.264" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_splash.xml" value="0.264" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/ac_tires.xml" value="0.1" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/activity_main.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/item_manufacturer.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/item_question.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/Need_For_Wheels/app/src/main/res/layout/item_tire.xml" value="0.18568840579710144" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
