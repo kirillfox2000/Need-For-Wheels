@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Need_For_Wheels">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,11 +20,11 @@
         </activity>
 
         <activity android:name=".activity.LogInActivity"/>
-        <activity android:name=".activity.ManufacturersActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
-        <activity android:name=".activity.SplashActivity"/>
-        <activity android:name=".activity.QuestionsActivity"/>
-        <activity android:name=".activity.TiresActivity"/>
+        <activity android:name=".fragments.ManufacturersActivity"/>
+        <activity android:name=".fragments.RegisterActivity"/>
+        <activity android:name=".fragments.SplashActivity"/>
+        <activity android:name=".fragments.QuestionsActivity"/>
+        <activity android:name=".fragments.TiresActivity"/>
 
 
     </application>
