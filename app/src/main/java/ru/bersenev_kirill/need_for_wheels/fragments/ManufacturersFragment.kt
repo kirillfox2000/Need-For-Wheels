@@ -19,8 +19,8 @@ class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
 
         fun newInstance (argName : String?, argIcon : Int?) : ManufacturersFragment {
             val args = bundleOf(
-                KEY_NAME to argName,
-                KEY_ICON_RES_ID to argIcon
+                ManufacturersFragment.KEY_NAME to argName,
+                ManufacturersFragment.KEY_ICON_RES_ID to argIcon
             )
             val fragment = ManufacturersFragment()
             fragment.arguments = args
@@ -32,12 +32,14 @@ class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentManufacturersBinding.bind(view)
         val name = arguments?.getString(TiresFragment.KEY_NAME)
+        val description = arguments?.getString(TiresFragment.KEY_DESCRIPTION)
         val iconResId = arguments?.getInt(TiresFragment.KEY_ICON_RES_ID)
 
         binding.rvManufacturers.layoutManager = LinearLayoutManager(requireContext())
         binding.rvManufacturers.adapter = ManufacturerAdapter(DataSource.manufacturers) {
-            (activity as MainActivity).navigateToFragment(
-                ManufacturersFragment.newInstance(name, iconResId)
+           (activity as MainActivity).navigateToFragment(
+                TiresFragment.newInstance(name, description, iconResId)
+
             )
         }
     }

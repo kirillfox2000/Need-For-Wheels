@@ -1,5 +1,9 @@
 package ru.bersenev_kirill.need_for_wheels.model
 
+
+//import kotlinx.serialization.Serializable
+
+//@Serializable
 data class Manufacturer(
     val name : String,
     val fullName : String,

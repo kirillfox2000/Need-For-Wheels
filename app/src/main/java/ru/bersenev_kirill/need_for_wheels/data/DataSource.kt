@@ -1,6 +1,6 @@
 package ru.bersenev_kirill.need_for_wheels.data
 
-import android.provider.ContactsContract
+
 import ru.bersenev_kirill.need_for_wheels.model.*
 
 object DataSource {
