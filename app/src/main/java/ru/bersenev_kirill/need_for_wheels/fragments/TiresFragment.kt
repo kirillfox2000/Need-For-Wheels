@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
-import ru.bersenev_kirill.need_for_wheels.adapter.ManufacturerAdapter
-import ru.bersenev_kirill.need_for_wheels.databinding.FragmentManufacturersBinding
-import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTireBinding
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
 

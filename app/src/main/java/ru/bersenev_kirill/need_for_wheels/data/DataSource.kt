@@ -32,7 +32,7 @@ object DataSource {
         Tire(manufacturers[2],"potenza",2000.0, specification1, reviews, questions,2),
         Tire(manufacturers[3],"atrezzo",2200.0, specification1, reviews, questions,3),
         Tire(manufacturers[4],"planet",2350.0, specification1, reviews, questions,4),
-        Tire(manufacturers[5],"contact",3200.0, specification1, reviews, questions,5),
+        Tire(manufacturers[0],"contact",3200.0, specification1, reviews, questions,5),
         Tire(manufacturers[1],"euro",1900.0, specification2, reviews, questions,6),
         Tire(manufacturers[2],"potenza",2270.0, specification2, reviews, questions,7),
         Tire(manufacturers[3],"atrezzo",2475.0, specification2, reviews, questions,8),

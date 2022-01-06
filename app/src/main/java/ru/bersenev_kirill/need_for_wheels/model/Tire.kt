@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 
 //@Serializable
 data class Tire (
+
     val manufacturer: Manufacturer,
     val name : String,
     val price : Double,
