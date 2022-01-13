@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
 import ru.bersenev_kirill.need_for_wheels.model.Tire
@@ -47,6 +48,12 @@ class ManufacturerAdapter(
             this.manufacturer = manufacturer
             tvName.text = manufacturer.name
             ivAvatar.setImageResource(manufacturer.coverResId)
+            Glide
+                .with(itemView)
+                .load(manufacturer.coverResId)
+                .centerCrop()
+                .placeholder(R.drawable.ic_splash)
+                .into(ivAvatar)
         }
     }
 }

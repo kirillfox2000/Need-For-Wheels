@@ -6,11 +6,14 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.*
+import kotlinx.serialization.ExperimentalSerializationApi
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.QuestionAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentQuestionsBinding
+import ru.bersenev_kirill.need_for_wheels.network.NetworkService
 
 class QuestionsFragment : Fragment(R.layout.fragment_questions) {
     companion object {
@@ -32,6 +35,15 @@ class QuestionsFragment : Fragment(R.layout.fragment_questions) {
         }
     }
 
+    private lateinit var binding: FragmentQuestionsBinding
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
+        binding.progressBar.visibility = View.GONE
+        println("CoroutineExceptionHandler got $exception")
+    }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentQuestionsBinding.bind(view)
@@ -45,6 +57,16 @@ class QuestionsFragment : Fragment(R.layout.fragment_questions) {
             (activity as MainActivity).navigateToFragment(
                 QuestionsFragment.newInstance(name, date, description, iconResId)
             )
+        }
+    }
+    @ExperimentalSerializationApi
+    private fun loadQuestions() {
+        scope.launch {
+            val questions = NetworkService.loadQuestions()
+            binding.rvQuestions.layoutManager = LinearLayoutManager(context)
+            binding.rvQuestions.adapter = QuestionAdapter(questions) {}
+            binding.progressBar.visibility = View.GONE
+            binding.swRefreshRW.isRefreshing = false
         }
     }
 }

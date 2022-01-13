@@ -1,9 +1,9 @@
 package ru.bersenev_kirill.need_for_wheels.model
 
 import androidx.annotation.DrawableRes
-//import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable
 
-//@Serializable
+@Serializable
 data class Tire (
 
     val manufacturer: Manufacturer,

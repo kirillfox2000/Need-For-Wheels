@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.model.Tire
 
@@ -38,11 +39,13 @@ class TireAdapter(
         private val tvName = view.findViewById<TextView>(R.id.tvName)
         private val tvDescription = view.findViewById<TextView>(R.id.tvDescription)
 
+
         private lateinit var tire : Tire
 
         init {
             view.setOnClickListener { listener(tire)}
         }
+
 
         @SuppressLint("SetTextI18n")
         fun bind (tire : Tire){
@@ -50,6 +53,13 @@ class TireAdapter(
             tvName.text = tire.manufacturer.toString() + tire.name
             tvDescription.text = tire.price.toString()
             ivAvatar.setImageResource(tire.coverResId)
+            Glide
+                .with(itemView)
+                .load(tire.coverResId)
+                .centerCrop()
+                .placeholder(R.drawable.ic_splash)
+                .into(ivAvatar)
         }
+
     }
 }

@@ -5,22 +5,28 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.*
+import kotlinx.serialization.ExperimentalSerializationApi
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
+import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
+import ru.bersenev_kirill.need_for_wheels.network.NetworkService
 
 class TiresFragment : Fragment(R.layout.fragment_tires) {
     companion object {
+
         const val KEY_NAME = "name"
         const val KEY_DESCRIPTION = "description"
         const val KEY_ICON_RES_ID = "iconResId"
 
-        fun newInstance (argName : String?, argDescr : String?, argIcon : Int?) : TiresFragment {
+        fun newInstance ( argName : String?, argDescription : String?, argIcon : Int?) : TiresFragment {
             val args = bundleOf(
+
                 KEY_NAME to argName,
-                KEY_DESCRIPTION to argDescr,
+                KEY_DESCRIPTION to argDescription,
                 KEY_ICON_RES_ID to argIcon
             )
             val fragment = TiresFragment()
@@ -29,8 +35,17 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
         }
     }
 
+    private lateinit var binding: FragmentTiresBinding
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
+        binding.progressBar.visibility = View.GONE
+        println("CoroutineExceptionHandler got $exception")
+    }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+       super.onViewCreated(view, savedInstanceState)
         val binding = FragmentTiresBinding.bind(view)
         val name = arguments?.getString(TireFragment.KEY_NAME)
         val description = arguments?.getString(TireFragment.KEY_DESCRIPTION)
@@ -42,6 +57,19 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
             (activity as MainActivity).navigateToFragment(
                 TireFragment.newInstance(name, description, iconResId, character)
             )
+        }
+    }
+
+
+
+    @ExperimentalSerializationApi
+    private fun loadTires() {
+        scope.launch {
+            val phones = NetworkService.loadTires()
+            binding.rvTires.layoutManager = LinearLayoutManager(context)
+            binding.rvTires.adapter = TireAdapter(phones) {}
+            binding.progressBar.visibility = View.GONE
+            binding.swRefreshRW.isRefreshing = false
         }
     }
 }

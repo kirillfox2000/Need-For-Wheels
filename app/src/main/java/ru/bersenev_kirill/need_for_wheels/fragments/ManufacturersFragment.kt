@@ -11,6 +11,9 @@ import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.ManufacturerAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentManufacturersBinding
+import ru.bersenev_kirill.need_for_wheels.network.NetworkService
+import kotlinx.coroutines.*
+import kotlinx.serialization.ExperimentalSerializationApi
 
 class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
     companion object {
@@ -19,14 +22,24 @@ class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
 
         fun newInstance (argName : String?, argIcon : Int?) : ManufacturersFragment {
             val args = bundleOf(
-                ManufacturersFragment.KEY_NAME to argName,
-                ManufacturersFragment.KEY_ICON_RES_ID to argIcon
+                KEY_NAME to argName,
+                KEY_ICON_RES_ID to argIcon
             )
             val fragment = ManufacturersFragment()
             fragment.arguments = args
             return fragment
         }
     }
+
+    private lateinit var binding: FragmentManufacturersBinding
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
+        binding.progressBar.visibility = View.GONE
+        println("CoroutineExceptionHandler got $exception")
+    }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +54,17 @@ class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
                 TiresFragment.newInstance(name, description, iconResId)
 
             )
+        }
+    }
+
+    @ExperimentalSerializationApi
+    private fun loadManufacturer() {
+        scope.launch {
+            val manufacturers = NetworkService.loadManufacturers()
+            binding.rvManufacturers.layoutManager = LinearLayoutManager(context)
+            binding.rvManufacturers.adapter = ManufacturerAdapter(manufacturers) {}
+            binding.progressBar.visibility = View.GONE
+            binding.swRefreshRW.isRefreshing = false
         }
     }
 }

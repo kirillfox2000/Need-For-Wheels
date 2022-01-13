@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 object NetworkService {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://demo1003271.mockable.io")
+        .baseUrl("http://demo1003271.mockable.io/")
     .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
     .build()
 
