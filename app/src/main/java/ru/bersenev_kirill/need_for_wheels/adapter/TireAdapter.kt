@@ -50,9 +50,9 @@ class TireAdapter(
         @SuppressLint("SetTextI18n")
         fun bind (tire : Tire){
             this.tire = tire
-            tvName.text = tire.manufacturer.toString() + tire.name
+            tvName.text = tire.manufacturer.name +  tire.name
             tvDescription.text = tire.price.toString()
-            ivAvatar.setImageResource(tire.coverResId)
+           // ivAvatar.setImageResource(tire.coverResId)
             Glide
                 .with(itemView)
                 .load(tire.coverResId)

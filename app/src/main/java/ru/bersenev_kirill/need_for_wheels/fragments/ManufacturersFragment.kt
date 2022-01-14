@@ -50,7 +50,7 @@ class ManufacturersFragment : Fragment(R.layout.fragment_manufacturers) {
 
         binding.rvManufacturers.layoutManager = LinearLayoutManager(requireContext())
         binding.rvManufacturers.adapter = ManufacturerAdapter(DataSource.manufacturers) {
-           (activity as MainActivity).navigateToFragment(
+            (activity as MainActivity).navigateToFragment(
                 TiresFragment.newInstance(name, description, iconResId)
 
             )

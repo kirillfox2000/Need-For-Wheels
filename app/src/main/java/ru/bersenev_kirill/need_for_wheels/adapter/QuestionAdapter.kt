@@ -52,7 +52,7 @@ class QuestionAdapter(
             tvName.text = question.user.name+question.user.lastName
             tvDate.text = question.date
             tvDescription.text = question.question
-            ivAvatar.setImageResource(question.user.coverResId)
+           // ivAvatar.setImageResource(question.user.coverResId)
             Glide
                 .with(itemView)
                 .load(question.coverResId)

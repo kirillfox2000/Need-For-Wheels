@@ -12,8 +12,8 @@ object DataSource {
         Manufacturer("Continental", "Continental", "Germany",5)
     )
 
-    val specification1 = Specification("summer", "15", "185", "60", "88H")
-    val specification2 = Specification("winter", "14", "175", "65", "88H")
+    val specification1 = Specification(" summer", "15", "185", "60", "88H")
+    val specification2 = Specification(" winter", "14", "175", "65", "88H")
 
     val user1 = User("Petr", "Petrov", "89277777777", "cscsdc@mail.ru", "Russia",1)
 
@@ -28,14 +28,14 @@ object DataSource {
     )
 
     val tires = listOf(
-        Tire(manufacturers[1],"euro",1750.0, specification1, reviews, questions,1),
-        Tire(manufacturers[2],"potenza",2000.0, specification1, reviews, questions,2),
-        Tire(manufacturers[3],"atrezzo",2200.0, specification1, reviews, questions,3),
-        Tire(manufacturers[4],"planet",2350.0, specification1, reviews, questions,4),
-        Tire(manufacturers[0],"contact",3200.0, specification1, reviews, questions,5),
-        Tire(manufacturers[1],"euro",1900.0, specification2, reviews, questions,6),
-        Tire(manufacturers[2],"potenza",2270.0, specification2, reviews, questions,7),
-        Tire(manufacturers[3],"atrezzo",2475.0, specification2, reviews, questions,8),
+        Tire(manufacturers[1]," euro",1750.0, specification1, reviews, questions,1),
+        Tire(manufacturers[2]," potenza",2000.0, specification1, reviews, questions,2),
+        Tire(manufacturers[3]," atrezzo",2200.0, specification1, reviews, questions,3),
+        Tire(manufacturers[4]," planet",2350.0, specification1, reviews, questions,4),
+        Tire(manufacturers[0]," contact",3200.0, specification1, reviews, questions,5),
+        Tire(manufacturers[1]," euro",1900.0, specification2, reviews, questions,6),
+        Tire(manufacturers[2]," potenza",2270.0, specification2, reviews, questions,7),
+        Tire(manufacturers[3]," atrezzo",2475.0, specification2, reviews, questions,8),
 
     )
 

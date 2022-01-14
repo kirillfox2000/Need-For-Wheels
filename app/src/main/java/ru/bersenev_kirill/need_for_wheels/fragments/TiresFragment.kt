@@ -5,14 +5,20 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import kotlinx.serialization.ExperimentalSerializationApi
+import ru.bersenev_kirill.need_for_wheels.ScreenState
+import ru.bersenev_kirill.need_for_wheels.onClickFlow
+import ru.bersenev_kirill.need_for_wheels.onRefreshFlow
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
-import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
+import ru.bersenev_kirill.need_for_wheels.model.Tire
 import ru.bersenev_kirill.need_for_wheels.network.NetworkService
 
 class TiresFragment : Fragment(R.layout.fragment_tires) {
@@ -35,18 +41,13 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
         }
     }
 
-    private lateinit var binding: FragmentTiresBinding
-
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
-        binding.progressBar.visibility = View.GONE
-        println("CoroutineExceptionHandler got $exception")
+    private fun setLoading(isLoading: Boolean) = with(binding) {
+        progressBar.isVisible = isLoading && !rvTires.isVisible
+        swRefreshRW.isRefreshing = isLoading && rvTires.isVisible
     }
 
-    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentTiresBinding.bind(view)
+    private fun setData(headtires: List<Tire>?) = with(binding){
+        rvTires.isVisible = headtires != null
         val name = arguments?.getString(TireFragment.KEY_NAME)
         val description = arguments?.getString(TireFragment.KEY_DESCRIPTION)
         val iconResId = arguments?.getInt(TireFragment.KEY_ICON_RES_ID)
@@ -60,16 +61,61 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
         }
     }
 
+    private fun setError(message: String?) = with(binding){
+        ErrLayout.isVisible = message != null
+        textError.text = message
+    }
 
+    private lateinit var binding: FragmentTiresBinding
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
+        binding.progressBar.visibility = View.GONE
+        println("CoroutineExceptionHandler got $exception")
+    }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentTiresBinding.bind(view)
+        merge(
+            flowOf(Unit),
+            binding.swRefreshRW.onRefreshFlow(),
+            binding.buttonError.onClickFlow()
+        )
+            .flatMapLatest{loadTiires()}
+            .distinctUntilChanged()
+            .onEach{
+                when(it){
+                    is ScreenState.DataLoaded -> {
+                        setLoading(false)
+                        setError(null)
+                        setData(it.tires)
+                    }
+                    is ScreenState.Error -> {
+                        setLoading(false)
+                        setError(it.error)
+                        setData(null)
+                    }
+                    ScreenState.Loading -> {
+                        setLoading(true)
+                        setError(null)
+                    }
+                }
+            }
+            .launchIn(lifecycleScope)
+    }
 
     @ExperimentalSerializationApi
-    private fun loadTires() {
-        scope.launch {
-            val phones = NetworkService.loadTires()
-            binding.rvTires.layoutManager = LinearLayoutManager(context)
-            binding.rvTires.adapter = TireAdapter(phones) {}
-            binding.progressBar.visibility = View.GONE
-            binding.swRefreshRW.isRefreshing = false
-        }
+    private fun loadTiires() = flow {
+
+        emit(ScreenState.Loading)
+        val tires = NetworkService.loadTires()
+        emit(ScreenState.DataLoaded(tires))
     }
+        .catch{
+            emit(ScreenState.Error(getString(R.string.errorConnect)))
+        }
+
+
 }

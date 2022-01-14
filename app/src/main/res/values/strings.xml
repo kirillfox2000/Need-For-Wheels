@@ -8,5 +8,7 @@
     <string name="hint_responsiveness">Напишите вопрос</string>
     <string name="text_responsiveness">Отправить</string>
     <string name="label_specification">Характеристики</string>
+    <string name="errorReset">Обновить</string>
+    <string name="errorConnect">Ошибка соединения</string>
 
 </resources>

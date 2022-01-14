@@ -10,6 +10,7 @@ import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource.manufacturers
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
+import ru.bersenev_kirill.need_for_wheels.data.DataSource.tires
 import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTireBinding
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
@@ -41,23 +42,24 @@ class TireFragment : Fragment(R.layout.fragment_tire) {
         val binding = FragmentTireBinding.bind(view)
 
 
-       // val name = arguments?.getString(KEY_NAME)
-       // val description = arguments?.getString(KEY_DESCRIPTION)
-       // val iconResId = arguments?.getInt(KEY_ICON_RES_ID)
+
+        val name = arguments?.getString(KEY_NAME)
+        val description = arguments?.getString(KEY_DESCRIPTION)
+        val iconResId = arguments?.getInt(KEY_ICON_RES_ID)
        // val character = arguments?.getString(KEY_CHARACTERISTICS)
 
-      //  binding.tvName.text = name
-        //if (iconResId != null) {
-         //   binding.ivAvatar.setImageResource(iconResId)
-        //}
-       // binding.tvSpecification.text = description
+       binding.tvName.text = name
+        if (iconResId != null) {
+            binding.ivAvatar.setImageResource(iconResId)
+        }
+       binding.tvSpecification.text = description
        // binding.tvCharacteristics.text = character
         //binding.rvTires.layoutManager = LinearLayoutManager(requireContext())
        // binding.rvTire.adapter =
         //TireAdapter(DataSource.tires) {
 
         //(activity as MainActivity).navigateToFragment(
-        //TireFragment.newInstance(name, description, iconResId,character)
+        //TiresFragment.newInstance(name, description, iconResId)
 
         // )
     //}
