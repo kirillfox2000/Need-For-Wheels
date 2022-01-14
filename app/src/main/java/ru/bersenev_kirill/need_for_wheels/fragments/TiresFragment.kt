@@ -71,13 +71,14 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
     private val coroutineExceptionHandler = CoroutineExceptionHandler { context, exception ->
         binding.progressBar.visibility = View.GONE
         println("CoroutineExceptionHandler got $exception")
+
     }
 
     private val scope = CoroutineScope(Dispatchers.Main + Job() + coroutineExceptionHandler)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentTiresBinding.bind(view)
+        binding = FragmentTiresBinding.bind(view)
         merge(
             flowOf(Unit),
             binding.swRefreshRW.onRefreshFlow(),
