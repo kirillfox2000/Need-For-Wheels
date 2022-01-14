@@ -1,20 +1,11 @@
-package ru.bersenev_kirill.need_for_wheels.fragments
+package ru.bersenev_kirill.need_for_wheels.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
-import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
-import ru.bersenev_kirill.need_for_wheels.data.DataSource.manufacturers
-import ru.bersenev_kirill.need_for_wheels.data.DataSource
-import ru.bersenev_kirill.need_for_wheels.data.DataSource.tires
-import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTireBinding
-import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
-import ru.bersenev_kirill.need_for_wheels.model.Specification
 
 class TireFragment : Fragment(R.layout.fragment_tire) {
     companion object {

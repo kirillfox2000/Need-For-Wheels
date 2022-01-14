@@ -1,7 +1,8 @@
-package ru.bersenev_kirill.need_for_wheels.fragments
+package ru.bersenev_kirill.need_for_wheels.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,20 +11,22 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.ExperimentalSerializationApi
-import ru.bersenev_kirill.need_for_wheels.ScreenState
-import ru.bersenev_kirill.need_for_wheels.onClickFlow
-import ru.bersenev_kirill.need_for_wheels.onRefreshFlow
+import ru.bersenev_kirill.need_for_wheels.presentation.onClickFlow
+import ru.bersenev_kirill.need_for_wheels.presentation.onRefreshFlow
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
-import ru.bersenev_kirill.need_for_wheels.adapter.TireAdapter
+import ru.bersenev_kirill.need_for_wheels.presentation.activity.MainActivity
+import ru.bersenev_kirill.need_for_wheels.presentation.adapter.TireAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentTiresBinding
-import ru.bersenev_kirill.need_for_wheels.model.Tire
-import ru.bersenev_kirill.need_for_wheels.network.NetworkService
+import ru.bersenev_kirill.need_for_wheels.domain.model.Tire
+import ru.bersenev_kirill.need_for_wheels.data.network.NetworkService
+import ru.bersenev_kirill.need_for_wheels.presentation.ScreenState
+import ru.bersenev_kirill.need_for_wheels.presentation.viewmodel.TiresViewModel
 
 class TiresFragment : Fragment(R.layout.fragment_tires) {
-    companion object {
 
+        private val tiresViewModel by lazy { TiresViewModel(requireContext(), lifecycleScope) }
+        companion object {
         const val KEY_NAME = "name"
         const val KEY_DESCRIPTION = "description"
         const val KEY_ICON_RES_ID = "iconResId"
@@ -86,7 +89,7 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
         )
             .flatMapLatest{loadTiires()}
             .distinctUntilChanged()
-            .onEach{
+        tiresViewModel.screenState.onEach{
                 when(it){
                     is ScreenState.DataLoaded -> {
                         setLoading(false)
@@ -105,6 +108,15 @@ class TiresFragment : Fragment(R.layout.fragment_tires) {
                 }
             }
             .launchIn(lifecycleScope)
+        if(savedInstanceState == null) {
+            tiresViewModel.loadData()
+        }
+        binding.swRefreshRW.setOnRefreshListener {
+            tiresViewModel.loadData()
+        }
+        binding.swRefreshRW.setOnRefreshListener {
+            tiresViewModel.loadData()
+        }
     }
 
     @ExperimentalSerializationApi

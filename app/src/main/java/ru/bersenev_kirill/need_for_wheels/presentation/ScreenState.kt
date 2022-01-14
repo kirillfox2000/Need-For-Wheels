@@ -1,7 +1,7 @@
-package ru.bersenev_kirill.need_for_wheels
+package ru.bersenev_kirill.need_for_wheels.presentation
 
-import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
-import ru.bersenev_kirill.need_for_wheels.model.Tire
+import ru.bersenev_kirill.need_for_wheels.domain.model.Manufacturer
+import ru.bersenev_kirill.need_for_wheels.domain.model.Tire
 
 sealed class ScreenState{
     data class DataLoaded(val tires: List<Tire>) : ScreenState()

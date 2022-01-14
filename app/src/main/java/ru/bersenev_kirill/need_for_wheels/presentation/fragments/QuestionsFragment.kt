@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.fragments
+package ru.bersenev_kirill.need_for_wheels.presentation.fragments
 
 
 import android.os.Bundle
@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
-import ru.bersenev_kirill.need_for_wheels.adapter.QuestionAdapter
+import ru.bersenev_kirill.need_for_wheels.presentation.activity.MainActivity
+import ru.bersenev_kirill.need_for_wheels.presentation.adapter.QuestionAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentQuestionsBinding
-import ru.bersenev_kirill.need_for_wheels.network.NetworkService
+import ru.bersenev_kirill.need_for_wheels.data.network.NetworkService
 
 class QuestionsFragment : Fragment(R.layout.fragment_questions) {
     companion object {

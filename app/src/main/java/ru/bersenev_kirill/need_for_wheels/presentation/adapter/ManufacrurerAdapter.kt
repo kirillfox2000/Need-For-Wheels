@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.adapter
+package ru.bersenev_kirill.need_for_wheels.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.model.Manufacturer
-import ru.bersenev_kirill.need_for_wheels.model.Tire
+import ru.bersenev_kirill.need_for_wheels.domain.model.Manufacturer
+import ru.bersenev_kirill.need_for_wheels.domain.model.Tire
 
 typealias OnManufacturerClickListener = (Manufacturer) -> Unit
 

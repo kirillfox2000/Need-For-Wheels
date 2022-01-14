@@ -1,7 +1,7 @@
-package ru.bersenev_kirill.need_for_wheels.network
+package ru.bersenev_kirill.need_for_wheels.data.network
 
 import retrofit2.http.GET
-import ru.bersenev_kirill.need_for_wheels.model.*
+import ru.bersenev_kirill.need_for_wheels.domain.model.*
 
 abstract class RestApi {
     @GET("manufacturers")

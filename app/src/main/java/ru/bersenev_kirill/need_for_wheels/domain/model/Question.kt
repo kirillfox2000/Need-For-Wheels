@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.model
+package ru.bersenev_kirill.need_for_wheels.domain.model
 
 import kotlinx.serialization.Serializable
 import java.util.*

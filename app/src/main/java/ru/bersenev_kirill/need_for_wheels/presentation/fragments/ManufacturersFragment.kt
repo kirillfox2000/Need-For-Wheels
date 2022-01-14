@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.fragments
+package ru.bersenev_kirill.need_for_wheels.presentation.fragments
 
 
 import android.os.Bundle
@@ -7,11 +7,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
-import ru.bersenev_kirill.need_for_wheels.adapter.ManufacturerAdapter
+import ru.bersenev_kirill.need_for_wheels.presentation.activity.MainActivity
+import ru.bersenev_kirill.need_for_wheels.presentation.adapter.ManufacturerAdapter
 import ru.bersenev_kirill.need_for_wheels.data.DataSource
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentManufacturersBinding
-import ru.bersenev_kirill.need_for_wheels.network.NetworkService
+import ru.bersenev_kirill.need_for_wheels.data.network.NetworkService
 import kotlinx.coroutines.*
 import kotlinx.serialization.ExperimentalSerializationApi
 

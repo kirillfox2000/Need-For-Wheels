@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.activity
+package ru.bersenev_kirill.need_for_wheels.presentation.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import ru.bersenev_kirill.need_for_wheels.R
 import ru.bersenev_kirill.need_for_wheels.databinding.ActivityMainBinding
-import ru.bersenev_kirill.need_for_wheels.fragments.LogInFragment
-import ru.bersenev_kirill.need_for_wheels.fragments.SplashFragment
-import ru.bersenev_kirill.need_for_wheels.fragments.TiresFragment
-import ru.bersenev_kirill.need_for_wheels.fragments.TireFragment
+import ru.bersenev_kirill.need_for_wheels.presentation.fragments.SplashFragment
 
 
 

@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels
+package ru.bersenev_kirill.need_for_wheels.presentation
 
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout

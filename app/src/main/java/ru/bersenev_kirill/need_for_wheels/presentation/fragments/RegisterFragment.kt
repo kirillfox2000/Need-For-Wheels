@@ -1,12 +1,10 @@
-package ru.bersenev_kirill.need_for_wheels.fragments
+package ru.bersenev_kirill.need_for_wheels.presentation.fragments
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.activity.MainActivity
+import ru.bersenev_kirill.need_for_wheels.presentation.activity.MainActivity
 import ru.bersenev_kirill.need_for_wheels.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {

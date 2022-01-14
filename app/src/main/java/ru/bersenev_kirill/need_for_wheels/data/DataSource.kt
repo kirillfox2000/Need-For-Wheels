@@ -1,7 +1,7 @@
 package ru.bersenev_kirill.need_for_wheels.data
 
 
-import ru.bersenev_kirill.need_for_wheels.model.*
+import ru.bersenev_kirill.need_for_wheels.domain.model.*
 
 object DataSource {
     val manufacturers = listOf(

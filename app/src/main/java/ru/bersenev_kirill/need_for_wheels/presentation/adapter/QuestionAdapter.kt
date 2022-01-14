@@ -1,4 +1,4 @@
-package ru.bersenev_kirill.need_for_wheels.adapter
+package ru.bersenev_kirill.need_for_wheels.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.bersenev_kirill.need_for_wheels.R
-import ru.bersenev_kirill.need_for_wheels.model.Question
+import ru.bersenev_kirill.need_for_wheels.domain.model.Question
 
 typealias OnQuestionClickListener = (Question) -> Unit
 

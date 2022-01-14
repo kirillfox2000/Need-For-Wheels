@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Need_For_Wheels">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="ru.bersenev_kirill.need_for_wheels.presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
