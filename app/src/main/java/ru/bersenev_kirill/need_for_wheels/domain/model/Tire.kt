@@ -1,16 +1,19 @@
 package ru.bersenev_kirill.need_for_wheels.domain.model
 
 import androidx.annotation.DrawableRes
+import androidx.room.ColumnInfo
+import androidx.room.Entity
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Entity(primaryKeys = ["name","description","specifications","coverResId"])
 data class Tire (
 
-    val manufacturer: Manufacturer,
-    val name : String,
-    val price : Double,
-    val specifications: Specification,
-    val reviews: List<Review>,
-    val question: List<Question>,
-    val coverResId : Int
+    @ColumnInfo val manufacturer: Manufacturer,
+    @ColumnInfo val name : String,
+    @ColumnInfo val price : Double,
+    @ColumnInfo val specifications: Specification,
+    @ColumnInfo val reviews: List<Review>,
+    @ColumnInfo val question: List<Question>,
+    @ColumnInfo val coverResId : Int
 )
