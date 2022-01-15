@@ -15,32 +15,32 @@ import java.io.IOException
 
 
 class ManufacturersViewModel (
-   // private val context: Context,
-    //private val coroutineScope: CoroutineScope
+    private val context: Context,
+    private val coroutineScope: CoroutineScope
 ) {
-   // private val manufacturersDao = DatabaseProvider.provideDatabase(context).manufacturerDao()
-   // private val _screenState = MutableStateFlow<ScreenStateManufacturers> (ScreenStateManufacturers.Loading)
+    private val manufacturersDao = DatabaseProvider.provideDatabase(context).manufacturerDao()
+    private val _screenState = MutableStateFlow<ScreenStateManufacturers> (ScreenStateManufacturers.Loading)
 
 
-   // val screenState : StateFlow<ScreenStateManufacturers> = _screenState
-  //  private var job: Job? = null
+    val screenState : StateFlow<ScreenStateManufacturers> = _screenState
+    private var job: Job? = null
 
-    //@ExperimentalSerializationApi
-    //fun loadData() {
-       // job = coroutineScope.launch {
-       //     try{
-              //  _screenState.value = ScreenStateManufacturers.Loading
-               // val manufacturers = try{
-                   // NetworkService.loadManufacturers().also{
-                     //   manufacturersDao.insertAll(it)
-                   // }
-               // } catch (ex: IOException){
-                //    manufacturersDao.getAll()
-               // }
-               // _screenState.value = ScreenStateManufacturers.DataLoaded(manufacturers)
-          //  } catch (ex: Throwable){
-            //    _screenState.value = ScreenStateManufacturers.Error("Ошибка!")
-          //  }
-       // }
-   // }
+    @ExperimentalSerializationApi
+    fun loadData() {
+        job = coroutineScope.launch {
+           try{
+                _screenState.value = ScreenStateManufacturers.Loading
+                val manufacturers = try{
+                    NetworkService.loadManufacturers().also{
+                        manufacturersDao.insertAll(it)
+                    }
+                } catch (ex: IOException){
+                    manufacturersDao.getAll()
+                }
+                _screenState.value = ScreenStateManufacturers.DataLoaded(manufacturers)
+            } catch (ex: Throwable){
+                _screenState.value = ScreenStateManufacturers.Error("Ошибка!")
+           }
+       }
+    }
 }

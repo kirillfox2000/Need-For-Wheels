@@ -5,7 +5,7 @@ import androidx.room.Entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity
+@Entity(primaryKeys = ["seasonality","size"])
 data class Specification(
     @ColumnInfo val seasonality : String,
     @ColumnInfo val size : String,

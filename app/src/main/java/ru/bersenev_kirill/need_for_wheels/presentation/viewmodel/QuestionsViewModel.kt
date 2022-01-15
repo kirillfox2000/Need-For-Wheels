@@ -16,30 +16,30 @@ import java.io.IOException
 
 
 class QuestionsViewModel (
-   // private val context: Context,
-   // private val coroutineScope: CoroutineScope
+    private val context: Context,
+    private val coroutineScope: CoroutineScope
 ) {
-   // private val questionsDao = DatabaseProvider.provideDatabase(context).questionDao()
-   // private val _screenState = MutableStateFlow<ScreenStateQuestions> (ScreenStateQuestions.Loading)
-   // val screenState : StateFlow<ScreenStateQuestions> = _screenState
-  //  private var job: Job? = null
+    private val questionsDao = DatabaseProvider.provideDatabase(context).questionDao()
+    private val _screenState = MutableStateFlow<ScreenStateQuestions> (ScreenStateQuestions.Loading)
+    val screenState : StateFlow<ScreenStateQuestions> = _screenState
+    private var job: Job? = null
 
-  //  @ExperimentalSerializationApi
-   // fun loadData() {
-      //  job = coroutineScope.launch {
-          //  try{
-              //  _screenState.value = ScreenStateQuestions.Loading
-               // val questions = try{
-                 //   NetworkService.loadQuestions().also{
-                   //     questionsDao.insertAll(it)
-                  //  }
-               // } catch (ex: IOException){
-                 //   questionsDao.getAll()
-              //  }
-              //  _screenState.value = ScreenStateQuestions.DataLoaded(questions)
-           // } catch (ex: Throwable){
-            //    _screenState.value = ScreenStateQuestions.Error("Ошибка!")
-         //   }
-      //  }
-   // }
+    @ExperimentalSerializationApi
+    fun loadData() {
+        job = coroutineScope.launch {
+            try{
+                _screenState.value = ScreenStateQuestions.Loading
+                val questions = try{
+                    NetworkService.loadQuestions().also{
+                        questionsDao.insertAll(it)
+                    }
+                } catch (ex: IOException){
+                    questionsDao.getAll()
+                }
+                _screenState.value = ScreenStateQuestions.DataLoaded(questions)
+            } catch (ex: Throwable){
+                _screenState.value = ScreenStateQuestions.Error("Ошибка!")
+            }
+        }
+    }
 }

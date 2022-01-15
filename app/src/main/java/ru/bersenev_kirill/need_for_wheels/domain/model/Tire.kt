@@ -6,7 +6,7 @@ import androidx.room.Entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity(primaryKeys = ["name","description","specifications","coverResId"])
+@Entity(primaryKeys = ["name","coverResId"])
 data class Tire (
 
     @ColumnInfo val manufacturer: Manufacturer,
